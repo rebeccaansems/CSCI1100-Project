@@ -1,75 +1,88 @@
 import java.util.Scanner;
+import java.util.Arrays;
 
 /*
  * CSCI 1100 - Project 1
  * Educational Game
- * Due Date: 2014/10/27 
+ * Due Date: 2014/12/02 
  * 
  * Authors:
  * Matt Smith
- * Becky Ansems
- * Pascha Love-Protter
+ * Rebecca Ansems
+ * Pascha Protter
  * Adbullah Negahban
  * 
  */
+ 
 public class project1 {
-
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		
 		System.out.println("Welcome to <INSERT GAME NAME HERE>!\nHow many players are playing?");
 		int numOfPlayers = s.nextInt(); //This is the int assigned to the number of players playing.
+      int numOfQuestions = 2; //This is the int assigned to number of questions
 		
 		int playerArray[] = new int[numOfPlayers];
+      int correct[] = new int[numOfQuestions];
+      String question[][] = new String[numOfQuestions][5];
 		
-		int i=0; //this is the index for the While loop. 
-		int j; //this is the index for the question number inside the while loop.
-		int score=0; //this keeps track of the score inside the while loop. at the end of the loop it is assigned to playerArray for each player number.
+		int answer;
+      int score=0;
 		
-		int answer[] = new int[1]; //CHANGE THIS NUMBER [0] WHEN YOU ADD MORE QUESTIONS!!!!! 
+      
+      //Question 1
+      question[0][0] = "(20 - 7) x 12 - 5?";
+      question[0][1] = "156";
+      question[0][2] = "151";//Correct
+      question[0][3] = "60";
+      question[0][4] = "148";
+      correct[0] = 2;
+      
+      //Question 2
+      question[1][0] = "(12 + 5) + 15 ÷ 5?";
+      question[1][1] = "17";
+      question[1][2] = "3";
+      question[1][3] = "18";
+      question[1][4] = "20";//Correct
+      correct[1] = 4;
+      
+      //Question 3
 		
-		
-		while (i < numOfPlayers){
-			j=0;
-			System.out.println("\n\nIt is now player " + (i+1) + "'s turn.");
+		for (int i=0;i<numOfPlayers;i++){
+         for (int q=0;q<numOfQuestions;q++){
+			   answer = 0;
+            score = 0;
+			   System.out.println("\n\nIt is now player " + (i+1) + "'s turn.");
 			
-			//This is the start of question 1. Copy and paste this section of code to create more questions.
-			//Keep in mind the variable 
-			System.out.println("\n\nHello Player "+(i+1)+"!\n<INSERT QUESTION HERE> \nChoose answer 1, 2, 3, or 4.		\nChoice 1:	\nChoice 2:	\nChoice 3:	\nChoice 4:");
-			System.out.print("The answer is choice number: ");
-			answer[j] = s.nextInt();
-			if (answer[j] == 2)/*<-- CHANGE THIS VALUE WHEN YOU COPY AND PASTE IT TO ADD QUESTIONS.*/	{
-				System.out.println("Correct!");
-				score+=10;
-			}
-			else{
-				System.out.println("WRONG.");
-			}
-			answer[j] = 0;
-			j++;
-			//END OF QUESTION 1.
-			
-			
-			
-			//The following code completes the while loop before it repeats. 
-			playerArray[i] = score;
-			i++;
-		}
-		
-		
-		// THIS PART OF THE PROGRAM AND BELOW IS BROKEN. YELL AT MATT TO FIX IT.
-		i=0;
-		j=0;
-		System.out.println("\n\n\n\n\nSCORES");
-		while (i < numOfPlayers){
-			while (j < numOfPlayers){
-				if (playerArray[i] > playerArray[j])
-					System.out.println("Rank: " + (i+1) + "\t\tPlayer number: " + (j+1) + "\t\tPlayer Score: " + playerArray[i]);
-				j++;
-			}
-			i++;
-		}
+			   System.out.println("\n\nHello Player "+(i+1)+"! " + question[q][0] + " \nChoose answer 1, 2, 3, or 4.");
+            System.out.println("Answer 1: " + question[q][1]);
+            System.out.println("Answer 2: " + question[q][2]);
+            System.out.println("Answer 3: " + question[q][3]);
+            System.out.println("Answer 4: " + question[q][4]);
+			   System.out.print("The answer is choice number: ");
+			   answer = s.nextInt();
+			   if (answer == correct[q]){
+				   System.out.println("Correct!");
+				   score+=10;
+			   }
+			   else{
+				   System.out.println("WRONG.");
+			   }
+			   answer = 0;
 
-	}
-
-}
+			   //The following code completes the while loop before it repeats. 
+			   playerArray[i] += score;
+         }
+		}
+   scores(numOfPlayers, playerArray);
+   }
+		
+   public static void scores(int numOfPlayers, int[] playerArray) {//method for scores 
+		System.out.println("\n\n\n\nSCORES");
+      for(int i=0;i<numOfPlayers;i++){
+         System.out.print("Player " + (i+1) + ": ");
+         System.out.println(playerArray[i]);
+         }
+      }
+      
+    }

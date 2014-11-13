@@ -48,8 +48,7 @@ public class project1 {
 		question[1][4] = "20";// Correct
 		correct[1] = 4;
 
-		// Question 3
-
+		//Actual game
 		for (int i = 0; i < numOfPlayers; i++) {
 			for (int q = 0; q < numOfQuestions; q++) {
 				answer = 0;

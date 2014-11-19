@@ -18,8 +18,7 @@ public class project1 {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 
-		System.out
-				.println("Welcome to <INSERT GAME NAME HERE>!\nHow many players are playing?");
+		System.out.println("Welcome to <INSERT GAME NAME HERE>!\nHow many players are playing?");
 		int numOfPlayers = s.nextInt(); // This is the int assigned to the
 										   // number of players playing.
 		int numOfQuestions = 2; // This is the int assigned to number of
